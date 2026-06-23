@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     referred_by,
   } = parsed.data
 
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: authData, error: authError } = await supabase.auth.signUp({
     email,
     password,
