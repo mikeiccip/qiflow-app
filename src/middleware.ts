@@ -46,11 +46,11 @@ export async function middleware(request: NextRequest) {
     // Onboarding gate — primary key lookup, fast
     const { data: profile } = await supabase
       .from('profiles')
-      .select('onboarding_completed')
+      .select('onboarding_complete')
       .eq('id', user.id)
       .single()
 
-    if (!profile?.onboarding_completed) {
+    if (!profile?.onboarding_complete) {
       return NextResponse.redirect(new URL('/onboarding', request.url))
     }
   }
@@ -81,11 +81,11 @@ export async function middleware(request: NextRequest) {
     // Check onboarding status to avoid double-redirect via dashboard
     const { data: profile } = await supabase
       .from('profiles')
-      .select('onboarding_completed')
+      .select('onboarding_complete')
       .eq('id', user.id)
       .single()
 
-    const dest = profile?.onboarding_completed ? '/dashboard' : '/onboarding'
+    const dest = profile?.onboarding_complete ? '/dashboard' : '/onboarding'
     return NextResponse.redirect(new URL(dest, request.url))
   }
 
