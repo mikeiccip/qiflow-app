@@ -1,6 +1,8 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
+export const runtime = 'nodejs'
+
 const DASHBOARD_PREFIXES = [
   '/dashboard', '/library', '/progress', '/profile', '/food-check',
   '/seasonal-plan', '/community', '/workshops', '/loyalty', '/constitution',
