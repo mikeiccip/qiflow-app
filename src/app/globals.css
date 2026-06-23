@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #201B16;
+  --paper: #EFE7D6;
+  --cinnabar: #C5402B;
+  --tea: #9C8B73;
+  --gold: #C2974D;
+}
