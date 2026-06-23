@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Button, Card } from '@/components/ui'
 import { cn } from '@/lib/utils'
-import { QA_CATEGORIES, type QACategory } from '@/app/api/community/questions/route'
+import { QA_CATEGORIES, type QACategory } from '@/app/api/community/questions/constants'
 
 interface PostQuestionFormProps {
   remaining: number

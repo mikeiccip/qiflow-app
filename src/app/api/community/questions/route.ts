@@ -2,22 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createClient } from '@/lib/supabase/server'
 import { createServiceClient } from '@/lib/supabase/service'
-import { checkAndIncrementCap, getCapStatus } from '@/lib/ai/caps'
+import { checkAndIncrementCap } from '@/lib/ai/caps'
 import { moderateText, sanitiseUserInput } from '@/lib/ai/moderation'
 import { generateQADraft } from '@/lib/ai/qaAnswerDraft'
-
-export const QA_CATEGORIES = [
-  'General Wellbeing',
-  'Nutrition & Food',
-  'Seasonal Health',
-  'Constitution & Body Type',
-  'Sleep & Rest',
-  'Energy & Vitality',
-  'Digestion',
-  'Emotional Wellbeing',
-] as const
-
-export type QACategory = typeof QA_CATEGORIES[number]
+import { QA_CATEGORIES, type QACategory } from './constants'
 
 const postSchema = z.object({
   question: z.string().min(10).max(300),

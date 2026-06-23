@@ -9,7 +9,7 @@ import { SyncManager } from '../SyncManager'
 
 export const metadata: Metadata = {
   title: 'Log check-in',
-  description: 'Log today's mood, energy, sleep, and pain to track your wellbeing journey.',
+  description: "Log today's mood, energy, sleep, and pain to track your wellbeing journey.",
 }
 
 export default async function LogCheckinPage() {

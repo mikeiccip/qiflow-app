@@ -12,7 +12,7 @@ import { MembershipBanner } from './MembershipBanner'
 
 export const metadata: Metadata = {
   title: 'Home — QiFlow',
-  description: 'Track your daily wellbeing, discover today's seasonal focus, and access your TCM wellness plan.',
+  description: "Track your daily wellbeing, discover today's seasonal focus, and access your TCM wellness plan.",
 }
 
 function todayUK() {

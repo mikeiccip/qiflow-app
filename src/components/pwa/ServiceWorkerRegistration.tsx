@@ -43,7 +43,8 @@ export function ServiceWorkerRegistration() {
 
           // Re-register background sync if supported
           if ('sync' in registration) {
-            registration.sync.register('checkin-sync').catch(() => {})
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ;(registration as any).sync.register('checkin-sync').catch(() => {})
           }
         })
       })
