@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: WorkshopPageProps): Promise<M
 }
 
 export default async function WorkshopPage({ params }: WorkshopPageProps) {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 

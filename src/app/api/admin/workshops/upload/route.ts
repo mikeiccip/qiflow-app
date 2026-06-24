@@ -6,7 +6,7 @@ import { randomUUID } from 'crypto'
 const MAX_PDF_BYTES = 20 * 1024 * 1024  // 20 MB
 
 export async function POST(req: NextRequest) {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
 

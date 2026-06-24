@@ -19,7 +19,7 @@ interface LibraryPageProps {
 }
 
 export default async function LibraryPage({ searchParams }: LibraryPageProps) {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
