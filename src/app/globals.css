@@ -8,4 +8,13 @@
   --cinnabar: #C5402B;
   --tea: #9C8B73;
   --gold: #C2974D;
+
+  --primary: #C5402B;
+  --primary-foreground: #ffffff;
+  --surface: #ffffff;
+  --background: #EFE7D6;
+  --text-primary: #201B16;
+  --text-secondary: #9C8B73;
+  --error: #C5402B;
+  --border: #e2d9cc;
 }

@@ -14,6 +14,14 @@ const config: Config = {
         cinnabar: '#C5402B',
         tea: '#9C8B73',
         gold: '#C2974D',
+        primary: 'var(--primary)',
+        surface: 'var(--surface)',
+        background: 'var(--background)',
+        error: 'var(--error)',
+        text: {
+          primary: 'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+        },
       },
       fontFamily: {
         serif: ['Fraunces', 'Georgia', 'serif'],
