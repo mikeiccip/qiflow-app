@@ -1,9 +1,14 @@
+import { randomBytes } from 'crypto'
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { createServiceClient } from '@/lib/supabase/service'
 import { signupSchema } from '@/lib/validation/auth'
 import { recordConsents, hashIp } from '@/lib/supabase/consent'
 import { createReferralRecord } from '@/lib/loyalty/referral'
+
+function generateReferralCode(): string {
+  return randomBytes(4).toString('hex').toUpperCase() // e.g. "A3F2C1B0"
+}
 
 export async function POST(req: NextRequest) {
   const body = await req.json()
@@ -37,8 +42,13 @@ export async function POST(req: NextRequest) {
   })
 
   if (authError || !authData.user) {
-    const msg = authError?.message ?? 'Signup failed'
-    const status = msg.toLowerCase().includes('already') ? 409 : 400
+    const raw = authError?.message ?? 'Signup failed'
+    const isRateLimit = raw.toLowerCase().includes('rate limit') || raw.toLowerCase().includes('email rate')
+    const isAlreadyExists = raw.toLowerCase().includes('already')
+    const msg = isRateLimit
+      ? 'We\'re having trouble sending your confirmation email right now. Please try again in a few minutes.'
+      : raw
+    const status = isAlreadyExists ? 409 : 400
     return NextResponse.json({ error: msg }, { status })
   }
 
@@ -53,9 +63,11 @@ export async function POST(req: NextRequest) {
     date_of_birth,
     marketing_consent,
     health_data_consent,
+    referral_code: generateReferralCode(),
   })
 
   if (profileError) {
+    console.error('[signup] profile upsert failed:', profileError.message, profileError.details, profileError.hint)
     return NextResponse.json({ error: 'Failed to create profile' }, { status: 500 })
   }
 
